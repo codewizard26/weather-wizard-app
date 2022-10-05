@@ -1,3 +1,7 @@
+# Project Link
+
+Live project link [weather-wizard-app](https://weather-wizard-app.netlify.app)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
