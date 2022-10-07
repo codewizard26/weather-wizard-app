@@ -1,4 +1,10 @@
+# About
 
+This is an open source weather app made using React.js and you can contribute to the repository by making this project unique 
+
+# Project Link
+
+Live project link [weather-wizard-app](https://weather-wizard-app.netlify.app)
 
 # What is Hacktoberfest
 Hacktoberfest is a program by Digital Ocean, DEV and Github, where you can easily win a T-Shirt just by making 4 pull requests in the month of October to any open source projects on Github.
