@@ -1,32 +1,32 @@
 # About
 
-This is an open source weather app made using React.js and you can contribute to the repository by making this project unique 
+This is an open-source weather app built using React.js, and you are welcome to add your unique touch to this project by contributing to the repository.
 
 # Project Link
 
 Live project link [weather-wizard-app](https://weather-wizard-app.netlify.app)
 
 # What is Hacktoberfest
-Hacktoberfest is a program by Digital Ocean, DEV and Github, where you can easily win a T-Shirt just by making 4 pull requests in the month of October to any open source projects on Github.
+The Hacktoberfest is a program put on by Digital Ocean, DEV and Github that lets you win a T-Shirt by making 4 pull requests on any open-source project throughout October.
 
 # Registration for Hacktoberfest
 https://hacktoberfest.com/
 
 # Add/Fix components
-you can add or fix the react component on the basis of your own ideas. the code should not be pasted from any other place
+Based on your ideas, you can add or fix the react component. Any code copied from another source should not be used.
 
 # Create pull request
-Once you have completed these steps, you are ready to start contributing by clicking on Create Pull Request. Maintainers will have a look over the request and will merge your branch if up to the mark.You are free to use this project anywhere
+After completing these steps, you can start contributing by clicking on Create Pull Request. Your branch will be merged if it meets the requirements of the maintainers. There is no restriction on where you can use this project.
 
 
 # NOTE
-1.Don't Create Pull Request to update "readme.md" File.
+1. Don't Create Pull Request to update "readme.md" File.
 
-2.Maintain proper folder structure.
+2. Maintain proper folder structure.
 
-3.In case you need to add an external package, install it by using npm. Don't push the complete package file here
+3. In case you need to add an external package, install it by using npm. Don't push the complete package file here
 
-3.The pull request should be relevant and useful
+3. The pull request should be relevant and useful
 
 
 
