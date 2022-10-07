@@ -1,74 +1,69 @@
+# About
+
+This is an open source weather app made using React.js and you can contribute to the repository by making this project unique 
+
 # Project Link
 
 Live project link [weather-wizard-app](https://weather-wizard-app.netlify.app)
 
-# Getting Started with Create React App
+# What is Hacktoberfest
+Hacktoberfest is a program by Digital Ocean, DEV and Github, where you can easily win a T-Shirt just by making 4 pull requests in the month of October to any open source projects on Github.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Registration for Hacktoberfest
+https://hacktoberfest.com/
 
-## Available Scripts
+# Add/Fix components
+you can add or fix the react component on the basis of your own ideas. the code should not be pasted from any other place
 
-In the project directory, you can run:
+# Create pull request
+Once you have completed these steps, you are ready to start contributing by clicking on Create Pull Request. Maintainers will have a look over the request and will merge your branch if up to the mark.You are free to use this project anywhere
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# NOTE
+1.Don't Create Pull Request to update "readme.md" File.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2.Maintain proper folder structure.
 
-### `npm test`
+3.In case you need to add an external package, install it by using npm. Don't push the complete package file here
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3.The pull request should be relevant and useful
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Steps to run the project
+1. Fork the repo
+2. Clone into local
+3. Run npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##This project uses opeaweathermap-api to fetch the weather report. you can generate your own api key by following the below steps
 
-### `npm run eject`
+1: visit https://home.openweathermap.org/users/sign_in
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2: create an account if you dont have one
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3: visit my api keys and generate your own api key
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Screenshot (205)](https://user-images.githubusercontent.com/49120376/194599069-eb40c105-33e2-4500-bf47-ea9c47db5eea.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4: create a `.env` file in the project root directory and copy paste your api key using this variable name
 
-## Learn More
+`REACT_APP_WEATHER_API_KEY = "YOUR API KEY"`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5: run npm start 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### To know more about the how the data is fetched from an api visit https://openweathermap.org/current#name
 
-### Code Splitting
+6: you can now make changes in the project according to your choice and once completed
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+7: Commit and push the code to your fork
 
-### Analyzing the Bundle Size
+8: Create a pull request by explaining your features along with the screenshot to have the changes merged from your fork into the origin
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Happy hacking
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
