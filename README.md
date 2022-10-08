@@ -6,6 +6,8 @@ This is an open-source weather app built using React.js, and you are welcome to 
 
 Live project link [weather-wizard-app](https://weather-wizard-app.netlify.app)
 
+###The original code is in community_uploads branch whereas master branch contains code changes made by the contributors. You can either make changes to any one of the branch
+
 # What is Hacktoberfest
 The Hacktoberfest is a program put on by Digital Ocean, DEV and Github that lets you win a T-Shirt by making 4 pull requests on any open-source project throughout October.
 
@@ -22,14 +24,13 @@ After completing these steps, you can start contributing by clicking on Create P
 # NOTE
 1. Don't Create Pull Request to update "readme.md" File.
 
-2. Don't create pull request to master branch
+2. Create pull request to only master branch
 
 3. Maintain proper folder structure.
 
 4. In case you need to add an external package, install it by using npm. Don't push the complete package file here
 
 5. The pull request should be relevant and useful
-
 
 
 # Steps to run the project
@@ -61,7 +62,7 @@ After completing these steps, you can start contributing by clicking on Create P
 
 7: Commit and push the code to a branch named after you, also attach a screenshot named as `icon.png` in your project.
 
-8: Create a pull request to `codewizard26/community_uploads` branch by explaining your features along with the screenshot to have the changes merged from `your_name branch` into the community uploads branch
+8: Create a pull request  by explaining your features along with the screenshot to have the changes merged from `your_name branch` into the master branch
 
 9: all of the pull requests will be merged to the repository that follow hactoberfest guidelines.
 
