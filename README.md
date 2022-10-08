@@ -22,17 +22,19 @@ After completing these steps, you can start contributing by clicking on Create P
 # NOTE
 1. Don't Create Pull Request to update "readme.md" File.
 
-2. Maintain proper folder structure.
+2. Don't create pull request to master branch
 
-3. In case you need to add an external package, install it by using npm. Don't push the complete package file here
+3. Maintain proper folder structure.
 
-3. The pull request should be relevant and useful
+4. In case you need to add an external package, install it by using npm. Don't push the complete package file here
+
+5. The pull request should be relevant and useful
 
 
 
 # Steps to run the project
 1. Fork the repo
-2. Clone into local
+2. Clone into local folder 
 3. Run npm install
 
 ##This project uses opeaweathermap-api to fetch the weather report. you can generate your own api key by following the below steps
@@ -55,9 +57,15 @@ After completing these steps, you can start contributing by clicking on Create P
 
 6: you can now make changes in the project according to your choice and once completed
 
-7: Commit and push the code to your fork
+# Steps for creating pull request
 
-8: Create a pull request by explaining your features along with the screenshot to have the changes merged from your fork into the origin
+7: Commit and push the code to a branch named after you, also attach a screenshot named as `icon.png` in your project.
+
+8: Create a pull request to `codewizard26/community_uploads` branch by explaining your features along with the screenshot to have the changes merged from `your_name branch` into the community uploads branch
+
+9: all of the pull requests will be merged to the repository that follow hactoberfest guidelines.
+
+
 
 # Happy hacking
 
