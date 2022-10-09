@@ -1,30 +1,31 @@
-import './App.css'
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-
+import "./App.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import CurerntLoactionButton from "./components/CurrentLocationButton";
 
 function App() {
-
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("");
   const [allData, setAllData] = useState({
-    city: 'City Name',
-    country: 'Country',
-    temperature: 'NA',
-    humidity: 'NA',
-    min_temp: 'NA',
-    pressure: 'NA',
-    icon: '10d',
-    description: 'Description'
-  })
+    city: "City Name",
+    country: "Country",
+    temperature: "NA",
+    humidity: "NA",
+    min_temp: "NA",
+    pressure: "NA",
+    icon: "10d",
+    description: "Description",
+  });
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
 
   const fetchData = async (city) => {
-    const APIKEY = process.env.REACT_APP_WEATHER_API_KEY
+    const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
     try {
-      const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKEY}`)
+      const result = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKEY}`
+      );
 
       await setAllData({
         city: result.data.name,
@@ -35,87 +36,101 @@ function App() {
         description: result.data.weather[0].description,
         pressure: result.data.main.pressure,
         icon: result.data.weather[0].icon,
-      })
+      });
+    } catch (e) {
+      await console.log("API loading");
     }
-
-    catch (e) {
-      await console.log("API loading")
-    }
-  }
+  };
 
   const handleChange = (event) => {
-    setSearch(event.target.value)
-  }
+    setSearch(event.target.value);
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    fetchData(search)
-  }
-
+    event.preventDefault();
+    fetchData(search);
+  };
 
   return (
     <main>
       <div className="App">
-        <nav className="navbar" style={{"backgroundColor": "#e3f2fd"}}>
+        <nav className="navbar" style={{ backgroundColor: "#e3f2fd" }}>
           <div className="container-fluid">
             <a className="navbar-brand" href="#">
-              <img src="favicon.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top navlogo" />
+              <img
+                src="favicon.png"
+                alt="Logo"
+                width="30"
+                height="24"
+                className="d-inline-block align-text-top navlogo"
+              />
               &nbsp;Weather Today
             </a>
-            
           </div>
         </nav>
 
-
         <section>
-          <div className='header-div'>
-          <form>
-              <input className="input" type='text' placeholder='Location' onChange={handleChange} name="city" value={search}></input>
-              <button className='button' type='submit' htmlFor="city" onClick={handleSubmit}>Search</button>
-            </form>
+          <div className="header-div">
+            <input
+              className="input"
+              type="text"
+              placeholder="Location"
+              onChange={handleChange}
+              name="city"
+              value={search}
+            ></input>
+            <button
+              className="button"
+              type="submit"
+              htmlFor="city"
+              onClick={handleSubmit}
+            >
+              Search
+            </button>
+            <CurerntLoactionButton setAllData={setAllData} />
             <div>
-              
-              <div className='data'>
-                <img alt="icon" src={'http://openweathermap.org/img/wn/' + allData.icon + '@2x.png'}></img>
+              <div className="data">
+                <img
+                  alt="icon"
+                  src={
+                    "http://openweathermap.org/img/wn/" +
+                    allData.icon +
+                    "@2x.png"
+                  }
+                ></img>
 
+                <h1 className="location">
+                  {allData.city} ({allData.country})
+                </h1>
 
-                <h1 className='location'>{(allData.city)} ({allData.country})</h1>
+                <h3 className="title">{allData.description}</h3>
 
-                <h3 className='title'>{(allData.description)}</h3>
-
-
-
-
-
-                <div className='weather-description'>
+                <div className="weather-description">
                   <div>
                     <h3>Temperature</h3>
-                    <p className='value'>{(allData.temperature)}°C</p>
-                  </div><div>
+                    <p className="value">{allData.temperature}°C</p>
+                  </div>
+                  <div>
                     <h3>Humidity</h3>
-                    <p className='value'>{allData.humidity}</p>
+                    <p className="value">{allData.humidity}</p>
                   </div>
                   <div>
                     <h3>Pressure</h3>
-                    <p className='value'>{allData.pressure}mb</p>
+                    <p className="value">{allData.pressure}mb</p>
                   </div>
                   <div>
                     <h3>Minimum Temp</h3>
-                    <p className='value'>{allData.min_temp}°C</p>
+                    <p className="value">{allData.min_temp}°C</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </section>
-
-
       </div>
-      <div className='footer'>&#169; Made by CodeWizard_26</div>
+      <div className="footer">&#169; Made by CodeWizard_26</div>
     </main>
-  )
-
+  );
 }
 
-export default App
+export default App;
