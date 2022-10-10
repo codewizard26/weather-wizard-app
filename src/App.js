@@ -113,12 +113,12 @@ function App() {
               </button>
             </form>
             {(isNoResult && notFoundSearch) && (
-              <h6 className='notFoundText'>
+              <div className='notFoundText'>
                 No result for
                 <h6 className="notFoundTextError">
                   {notFoundSearch}
                 </h6>
-              </h6>
+              </div>
             )}
             <div>
 
