@@ -20,12 +20,41 @@ function App() {
   //   fetchData()
   // }, [])
 
+    city: 'City Name',
+    country: 'Country',
+    temperature: 'NA',
+    humidity: 'NA',
+    min_temp: 'NA',
+    pressure: 'NA',
+    icon: '10d',
+    description: 'Description'
+  })
+  const [notFoundSearch, setNotFoundSearch] = useState('')
+  const [isNoResult, setIsNoResult] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [dateAndTime,setDateAndTime] = useState("");
+
+  useEffect(() => {
+    if (search) fetchData()
+  }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      getCurrentDateAndTime();
+    } , 1000)
+  },[dateAndTime]);
+
   const fetchData = async (city) => {
     const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
     try {
+
       const result = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKEY}`
       );
+
+      setLoading(true)
+      if (isNoResult) setIsNoResult(false)
+      const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKEY}`)
+
 
       await setAllData({
         city: result.data.name,
@@ -40,21 +69,64 @@ function App() {
     } catch (e) {
       await console.log("API loading");
     }
+
   };
+=======
+
+    catch (e) {
+      await console.log("API loading")
+      setIsNoResult(true)
+      setNotFoundSearch(city)
+    } finally {
+      setLoading(false)
+    }
+  }
+
 
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
 
   const handleSubmit = (event) => {
+
     event.preventDefault();
     fetchData(search);
   };
+=======
+    event.preventDefault()
+    fetchData(search)
+  }
+
+  const getCurrentDateAndTime = () => {
+    let date = new Date();
+    let options = {
+      weekday:"long",
+      year:"numeric",
+      month:"long",
+      day:"numeric"
+    };
+    let currentDate = date.toLocaleDateString("en-us",options);
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    let currentTime = hours > 12
+    ? `${hours - 12 < 10 ? `0${hours - 12}` : hours - 12}:${
+        minutes < 10 ? `0${minutes}` : minutes
+      }:${seconds < 10 ? `0${seconds}` : seconds} P.M`
+    : `${hours}:${minutes}:${seconds} A.M`;
+    setDateAndTime(`${currentDate} || ${currentTime}`);
+  }
+
+
 
   return (
     <main>
       <div className="App">
+
         <nav className="navbar" style={{ backgroundColor: "#e3f2fd" }}>
+
+        <nav className="navbar" style={{ "backgroundColor": "#e3f2fd" }}>
+
           <div className="container-fluid">
             <a className="navbar-brand" href="#">
               <img
@@ -66,10 +138,16 @@ function App() {
               />
               &nbsp;Weather Today
             </a>
+
+            <a className="navbar-brand" href="/">
+                {dateAndTime}
+            </a>
+
           </div>
         </nav>
 
         <section>
+
           <div className="header-div">
             <input
               className="input"
@@ -106,6 +184,38 @@ function App() {
                 <h3 className="title">{allData.description}</h3>
 
                 <div className="weather-description">
+
+          <div className='header-div'>
+            <form>
+              <input disabled={loading} className="input" type='text' placeholder='Location' onChange={handleChange} name="city" value={search}></input>
+              <button className='button' type='submit' htmlFor="city" onClick={handleSubmit}>
+                {loading ? 'Searching...' : 'Search'}
+              </button>
+            </form>
+            {(isNoResult && notFoundSearch) && (
+              <h6 className='notFoundText'>
+                No result for
+                <h6 className="notFoundTextError">
+                  {notFoundSearch}
+                </h6>
+              </h6>
+            )}
+            <div>
+
+              <div className='data'>
+                <img alt="icon" src={'http://openweathermap.org/img/wn/' + allData.icon + '@2x.png'}></img>
+
+
+                <h1 className='location'>{(allData.city)} ({allData.country})</h1>
+
+                <h3 className='title'>{(allData.description)}</h3>
+
+
+
+
+
+                <div className='weather-description'>
+
                   <div>
                     <h3>Temperature</h3>
                     <p className="value">{allData.temperature}°C</p>

@@ -106,5 +106,18 @@ button:hover {
 .footer {
   background-color: lightsteelblue;
   padding: 0.6rem;
+
   font-size: 1rem;
 }
+=======
+  font-size:1rem;
+}
+
+h6.notFoundText {
+  color: grey
+}
+
+h6.notFoundTextError {
+  color: red
+}
+
