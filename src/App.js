@@ -16,14 +16,19 @@ function App() {
     icon: '10d',
     description: 'Description'
   })
+  const [notFoundSearch, setNotFoundSearch] = useState('')
+  const [isNoResult, setIsNoResult] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    fetchData()
+    if (search) fetchData()
   }, [])
 
   const fetchData = async (city) => {
     const APIKEY = process.env.REACT_APP_WEATHER_API_KEY
     try {
+      setLoading(true)
+      if (isNoResult) setIsNoResult(false)
       const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKEY}`)
 
       await setAllData({
@@ -40,6 +45,10 @@ function App() {
 
     catch (e) {
       await console.log("API loading")
+      setIsNoResult(true)
+      setNotFoundSearch(city)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -56,25 +65,35 @@ function App() {
   return (
     <main>
       <div className="App">
-        <nav className="navbar" style={{"backgroundColor": "#e3f2fd"}}>
+        <nav className="navbar" style={{ "backgroundColor": "#e3f2fd" }}>
           <div className="container-fluid">
             <a className="navbar-brand" href="#">
               <img src="favicon.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top navlogo" />
               &nbsp;Weather Today
             </a>
-            
+
           </div>
         </nav>
 
 
         <section>
           <div className='header-div'>
-          <form>
-              <input className="input" type='text' placeholder='Location' onChange={handleChange} name="city" value={search}></input>
-              <button className='button' type='submit' htmlFor="city" onClick={handleSubmit}>Search</button>
+            <form>
+              <input disabled={loading} className="input" type='text' placeholder='Location' onChange={handleChange} name="city" value={search}></input>
+              <button className='button' type='submit' htmlFor="city" onClick={handleSubmit}>
+                {loading ? 'Searching...' : 'Search'}
+              </button>
             </form>
+            {(isNoResult && notFoundSearch) && (
+              <h6 className='notFoundText'>
+                No result for
+                <h6 className="notFoundTextError">
+                  {notFoundSearch}
+                </h6>
+              </h6>
+            )}
             <div>
-              
+
               <div className='data'>
                 <img alt="icon" src={'http://openweathermap.org/img/wn/' + allData.icon + '@2x.png'}></img>
 
