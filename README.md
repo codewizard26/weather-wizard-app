@@ -66,7 +66,7 @@ After completing these steps, you can start contributing by clicking on Create P
 
 9: all of the pull requests will be merged to the repository that follow hactoberfest guidelines.
 
-
+Finally if you enjoyed working on this repositiory don't forget to star this repository
 
 # Happy hacking
 
