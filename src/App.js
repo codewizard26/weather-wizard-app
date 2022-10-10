@@ -18,11 +18,17 @@ function App() {
   })
   const [notFoundSearch, setNotFoundSearch] = useState('')
   const [isNoResult, setIsNoResult] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [dateAndTime,setDateAndTime] = useState("");
 
   useEffect(() => {
     if (search) fetchData()
   }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      getCurrentDateAndTime();
+    } , 1000)
+  },[dateAndTime]);
 
   const fetchData = async (city) => {
     const APIKEY = process.env.REACT_APP_WEATHER_API_KEY
@@ -61,6 +67,26 @@ function App() {
     fetchData(search)
   }
 
+  const getCurrentDateAndTime = () => {
+    let date = new Date();
+    let options = {
+      weekday:"long",
+      year:"numeric",
+      month:"long",
+      day:"numeric"
+    };
+    let currentDate = date.toLocaleDateString("en-us",options);
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    let currentTime = hours > 12
+    ? `${hours - 12 < 10 ? `0${hours - 12}` : hours - 12}:${
+        minutes < 10 ? `0${minutes}` : minutes
+      }:${seconds < 10 ? `0${seconds}` : seconds} P.M`
+    : `${hours}:${minutes}:${seconds} A.M`;
+    setDateAndTime(`${currentDate} || ${currentTime}`);
+  }
+
 
   return (
     <main>
@@ -71,7 +97,9 @@ function App() {
               <img src="favicon.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top navlogo" />
               &nbsp;Weather Today
             </a>
-
+            <a className="navbar-brand" href="/">
+                {dateAndTime}
+            </a>
           </div>
         </nav>
 
