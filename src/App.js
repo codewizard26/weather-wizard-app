@@ -32,7 +32,7 @@ function App() {
   const fetchData = async (city) => {
     const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
     try {
-      // Clear message for invalid search if location is entered in search field
+      // Clear message for invalid search if location is entered in search field.
       setInvalidSearch('')
       setLoading(true);
       if (isNoResult) setIsNoResult(false);
