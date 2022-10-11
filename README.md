@@ -4,7 +4,7 @@ This is an open-source weather app built using React.js, and you are welcome to 
 
 # Project Link
 
-Live project link [weather-wizard-app](https://weather-wizard-app.netlify.app)
+Live project link [weather-wizard-app](https://weather-wizapp.netlify.app/)
 
 ###The original code is in community_uploads branch whereas master branch contains code changes made by the contributors. You can either make changes to any one of the branch
 
