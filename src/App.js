@@ -66,7 +66,6 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Ensure the searched city is not blank
-
     search !== '' ? fetchData(search) : setInvalidSearch('Please enter city name to search.')
   };
 
