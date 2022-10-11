@@ -15,6 +15,7 @@ function App() {
     description: "Description"
   });
   const [notFoundSearch, setNotFoundSearch] = useState("");
+  const [invalidSearch, setInvalidSearch] = useState("");
   const [isNoResult, setIsNoResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dateAndTime, setDateAndTime] = useState("");
@@ -31,6 +32,8 @@ function App() {
   const fetchData = async (city) => {
     const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
     try {
+      // Clear message for invalid search if location is entered in search field.
+      setInvalidSearch('');
       setLoading(true);
       if (isNoResult) setIsNoResult(false);
       const result = await axios.get(
@@ -62,7 +65,8 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetchData(search);
+    // Ensure the searched city is not blank
+    search !== '' ? fetchData(search) : setInvalidSearch('Please enter city name to search.');
   };
 
   const getCurrentDateAndTime = () => {
@@ -128,10 +132,15 @@ function App() {
                 {loading ? "Searching..." : "Search"}
               </button>
             </form>
-            {isNoResult && notFoundSearch && (
+            {isNoResult && notFoundSearch && !invalidSearch &&(
               <h6 className="notFoundText">
                 No result for
                 <h6 className="notFoundTextError">{notFoundSearch}</h6>
+              </h6>
+            )}
+             {invalidSearch && (
+              <h6 className="notFoundText">
+                {invalidSearch}   
               </h6>
             )}
             <div>
