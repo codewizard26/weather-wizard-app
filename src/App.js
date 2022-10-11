@@ -15,7 +15,7 @@ function App() {
     description: "Description"
   });
   const [notFoundSearch, setNotFoundSearch] = useState("");
-  const [invalidSearch, setInvalidSearch] = useState("")
+  const [invalidSearch, setInvalidSearch] = useState("");
   const [isNoResult, setIsNoResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dateAndTime, setDateAndTime] = useState("");
