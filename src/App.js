@@ -33,7 +33,7 @@ function App() {
     const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
     try {
       // Clear message for invalid search if location is entered in search field.
-      setInvalidSearch('')
+      setInvalidSearch('');
       setLoading(true);
       if (isNoResult) setIsNoResult(false);
       const result = await axios.get(
@@ -66,7 +66,7 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Ensure the searched city is not blank
-    search !== '' ? fetchData(search) : setInvalidSearch('Please enter city name to search.')
+    search !== '' ? fetchData(search) : setInvalidSearch('Please enter city name to search.');
   };
 
   const getCurrentDateAndTime = () => {
