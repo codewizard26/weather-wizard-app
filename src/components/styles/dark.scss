@@ -1,0 +1,17 @@
+.dark {
+    background: rgb(0,0,36);
+    background: linear-gradient(90deg, rgba(0,0,36,1) 2%, rgba(107,107,107,0.9671218829328606) 100%, rgba(0,212,255,1) 100%);
+    color: #fff;
+    transition: 1s all ease-in;
+}
+
+.dark-text {
+    color: #ffffff;
+    transition: 1s all ease-in;
+    filter: brightness(1);
+}
+
+.dark-img {
+    background: #ffffff;
+    border-radius: 50%;
+  }
