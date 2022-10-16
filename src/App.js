@@ -7,6 +7,8 @@ import NotFound from "./components/NotFound";
 import WeatherData from "./components/WeatherData";
 import axios from "axios";
 import ModeContextProvider, { useModeContext } from "./contexts/mode";
+import useCurrentLocation from "./contexts/currentLocation";
+import {geolocationOptions} from "./components/constant/geolocationOptions";
 
 function App() {
 	const [search, setSearch] = useState("");
@@ -25,16 +27,51 @@ function App() {
 	const [isNoResult, setIsNoResult] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [dateAndTime, setDateAndTime] = useState("");
-
+	const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions);
 	useEffect(() => {
 		if (search) fetchData();
 	}, []);
+
+	useEffect(() => {
+		console.log(currentLocation,currentError)
+		if(currentLocation)
+			fetchCurrData();
+	}, [currentLocation]);
+
+
 	useEffect(() => {
 		setTimeout(() => {
 			getCurrentDateAndTime();
 		}, 1000);
 	}, [dateAndTime]);
+	const fetchCurrData=async ()=>{
+		const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
+		try {
+			// Clear message for invalid search if location is entered in search field.
+			setInvalidSearch("");
+			setLoading(true);
+			if (isNoResult) setIsNoResult(false);
+			const result = await axios.get(
+				`https://api.openweathermap.org/data/2.5/weather?lat=${currentLocation.latitude}&lon=${currentLocation.longitude}&units=metric&appid=${APIKEY}`
+			);
 
+			await setAllData({
+				city: result.data.name,
+				country: result.data.sys.country,
+				temperature: result.data.main.temp,
+				humidity: result.data.main.humidity,
+				min_temp: result.data.main.temp_min,
+				description: result.data.weather[0].description,
+				pressure: result.data.main.pressure,
+				icon: result.data.weather[0].icon,
+			});
+		} catch (e) {
+			await console.log("API loading");
+			setIsNoResult(true);
+		} finally {
+			setLoading(false);
+		}
+	}
 	const fetchData = async (city) => {
 		const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
 		try {
