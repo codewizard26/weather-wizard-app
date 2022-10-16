@@ -43,7 +43,7 @@ const WeatherData = (props) => {
 				</div>
 				<div>
 					<h3>Minimum Temp</h3>
-					<p className="value">{min_temp}°C</p>
+					<p className={`${mode?'dark-text':'value'}`}>{min_temp}°C</p>
 				</div>
 			</div>
 		</div>
