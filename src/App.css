@@ -102,13 +102,17 @@ button:hover {
   box-shadow: 1px 1px 15px -3px;
 }
 
-.header-div div {
+.data {
   /* font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; */
-  margin-bottom: 2.5rem;
   background: white;
   text-align: center;
-  padding-top: 0.3rem;
+}
+
+.data-mb {
+  margin-bottom: 2.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .value {
@@ -160,4 +164,9 @@ h6.notFoundTextError {
   color: rgb(255, 255, 255);
   text-shadow: 0.5px 0.5px 0.5px black;
   font-size: 18px;
+}
+
+ion-icon {
+  font-size: 3rem;
+  transition: all 1s ease-in;
 }

@@ -1,13 +1,12 @@
 import "./App.css";
-
 import { useEffect, useState } from "react";
-
 import Footer from "./components/Footer";
 import InputForm from "./components/InputForm";
 import NavBar from "./components/NavBar";
 import NotFound from "./components/NotFound";
 import WeatherData from "./components/WeatherData";
 import axios from "axios";
+import ModeContextProvider, { useModeContext } from "./contexts/mode";
 
 function App() {
 	const [search, setSearch] = useState("");
@@ -100,10 +99,10 @@ function App() {
 	};
 
 	return (
+	<ModeContextProvider>
 		<main>
 			<div className="App">
 				<NavBar dateAndTime={dateAndTime} />
-
 				<section>
 					<div className="header-div container">
 						<InputForm
@@ -124,6 +123,7 @@ function App() {
 			</div>
 			<Footer />
 		</main>
+	</ModeContextProvider>
 	);
 }
 
