@@ -10,7 +10,7 @@ const WeatherData = (props) => {
 		temperature,
 		humidity,
 		pressure,
-		minTemp,
+		min_temp,
 	} = props.WeatherData;
 	const {mode} = useModeContext();
 
@@ -43,7 +43,7 @@ const WeatherData = (props) => {
 				</div>
 				<div>
 					<h3>Minimum Temp</h3>
-					<p className={`${mode?'dark-text':'value'}`}>{minTemp}°C</p>
+					<p className="value">{min_temp}°C</p>
 				</div>
 			</div>
 		</div>
