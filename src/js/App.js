@@ -1,14 +1,14 @@
-import "./App.css";
+import "../style/app.css";
 import { useEffect, useState } from "react";
-import Footer from "./components/Footer";
-import InputForm from "./components/InputForm";
-import NavBar from "./components/NavBar";
-import NotFound from "./components/NotFound";
-import WeatherData from "./components/WeatherData";
+import Footer from "../components/Footer";
+import InputForm from "../components/InputForm";
+import NavBar from "../components/NavBar";
+import NotFound from "../components/NotFound";
+import WeatherData from "../components/WeatherData";
 import axios from "axios";
-import ModeContextProvider from "./contexts/mode";
-import useCurrentLocation from "./contexts/currentLocation";
-import { geolocationOptions } from "./components/constant/geolocationOptions";
+import ModeContextProvider from "../contexts/mode";
+import useCurrentLocation from "../contexts/currentLocation";
+import { geolocationOptions } from "../components/constant/geolocationOptions";
 
 function App() {
 	const [search, setSearch] = useState("");
