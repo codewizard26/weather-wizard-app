@@ -39,25 +39,15 @@ const NavBar = (props) => {
             boxShadow: "5px 2px 5px",
           }}
           className="navbar-item dbtn"
-          href="/"
+          onClick={changeMode}
         >
-          {mode ? (
-            <i className="icon-dark-light">
+          <i className="icon-dark-light d-flex justify-item-center">
               <ion-icon
-                name="sunny"
+                name={mode ? "sunny" : "moon"}
                 style={{ height: "30px", width: "30px" }}
-                onClick={changeMode}
+                
               ></ion-icon>
             </i>
-          ) : (
-            <i className="icon-dark-light">
-              <ion-icon
-                name="moon"
-                style={{ height: "30px", width: "30px" }}
-                onClick={changeMode}
-              ></ion-icon>
-            </i>
-          )}
         </button>
       </div>
     </nav>
