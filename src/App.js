@@ -6,9 +6,9 @@ import NavBar from "./components/NavBar";
 import NotFound from "./components/NotFound";
 import WeatherData from "./components/WeatherData";
 import axios from "axios";
-import ModeContextProvider, { useModeContext } from "./contexts/mode";
+import ModeContextProvider from "./contexts/mode";
 import useCurrentLocation from "./contexts/currentLocation";
-import {geolocationOptions} from "./components/constant/geolocationOptions";
+import { geolocationOptions } from "./components/constant/geolocationOptions";
 
 function App() {
 	const [search, setSearch] = useState("");
@@ -28,23 +28,23 @@ function App() {
 	const [loading, setLoading] = useState(false);
 	const [dateAndTime, setDateAndTime] = useState("");
 	const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions);
+
 	useEffect(() => {
 		if (search) fetchData();
 	}, []);
 
 	useEffect(() => {
-		console.log(currentLocation,currentError)
-		if(currentLocation)
-			fetchCurrData();
+		console.log(currentLocation, currentError)
+		if (currentLocation) fetchCurrData();
 	}, [currentLocation]);
-
 
 	useEffect(() => {
 		setTimeout(() => {
 			getCurrentDateAndTime();
 		}, 1000);
 	}, [dateAndTime]);
-	const fetchCurrData=async ()=>{
+
+	const fetchCurrData = async () => {
 		const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
 		try {
 			// Clear message for invalid search if location is entered in search field.
@@ -72,6 +72,7 @@ function App() {
 			setLoading(false);
 		}
 	}
+
 	const fetchData = async (city) => {
 		const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
 		try {
@@ -128,39 +129,38 @@ function App() {
 		let seconds = date.getSeconds();
 		let currentTime =
 			hours > 12
-				? `${hours - 12 < 10 ? `0${hours - 12}` : hours - 12}:${
-						minutes < 10 ? `0${minutes}` : minutes
-				  }:${seconds < 10 ? `0${seconds}` : seconds} P.M`
+				? `${hours - 12 < 10 ? `0${hours - 12}` : hours - 12}:${minutes < 10 ? `0${minutes}` : minutes
+				}:${seconds < 10 ? `0${seconds}` : seconds} P.M`
 				: `${hours}:${minutes}:${seconds} A.M`;
 		setDateAndTime(`${currentDate} || ${currentTime}`);
 	};
 
 	return (
-	<ModeContextProvider>
-		<main>
-			<div className="App">
-				<NavBar dateAndTime={dateAndTime} />
-				<section>
-					<div className="header-div container">
-						<InputForm
-							loading={loading}
-							handleChange={handleChange}
-							search={search}
-							handleSubmit={handleSubmit}
-						/>
+		<ModeContextProvider>
+			<main>
+				<div className="App">
+					<NavBar dateAndTime={dateAndTime} />
+					<section>
+						<div className="header-div container">
+							<InputForm
+								loading={loading}
+								handleChange={handleChange}
+								search={search}
+								handleSubmit={handleSubmit}
+							/>
 
-						{isNoResult && notFoundSearch && !invalidSearch && (
-							<NotFound notFoundSearch={notFoundSearch} />
-						)}
+							{isNoResult && notFoundSearch && !invalidSearch && (
+								<NotFound notFoundSearch={notFoundSearch} />
+							)}
 
-						{invalidSearch && <h6 className="notFoundText">{invalidSearch}</h6>}
-						<WeatherData WeatherData={allData} />
-					</div>
-				</section>
-			</div>
-			<Footer />
-		</main>
-	</ModeContextProvider>
+							{invalidSearch && <h6 className="notFoundText">{invalidSearch}</h6>}
+							<WeatherData WeatherData={allData} />
+						</div>
+					</section>
+				</div>
+				<Footer />
+			</main>
+		</ModeContextProvider>
 	);
 }
 
