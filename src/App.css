@@ -142,6 +142,10 @@ button:hover {
     width: 70% !important;
     margin: 0px 5px !important;
 }
+.dbtn{
+  height:40px;
+  width:40px;
+}
 }
 
 .footer {
