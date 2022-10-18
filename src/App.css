@@ -58,6 +58,25 @@ button:hover {
   border-color: rgb(6 150 185);
 }
 
+.button-system {
+  outline: none;
+  border: transparent 1px;
+  padding: 8px 18px;
+  height: 40px;
+  margin: 5px;
+  font-size: 17px;
+  background-color: rgb(253, 253, 253);
+  border-radius: 7px;
+  color: #040404;
+  border: 0.5px solid transparent;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.button-system:hover {
+  background-color: transparent;
+  background-color: rgb(196 196 196);
+}
+
 .locationForm {
   display: flex;
   justify-content: center;

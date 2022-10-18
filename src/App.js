@@ -27,11 +27,12 @@ function App() {
 	const [isNoResult, setIsNoResult] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [dateAndTime, setDateAndTime] = useState("");
+	const [unitSystem, setUnitSystem] = useState('metric')
 	const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions);
 
 	useEffect(() => {
-		if (search) fetchData();
-	}, []);
+		if (search && unitSystem) fetchData(search);
+	}, [unitSystem]);
 
 	useEffect(() => {
 		console.log(currentLocation, currentError)
@@ -52,7 +53,7 @@ function App() {
 			setLoading(true);
 			if (isNoResult) setIsNoResult(false);
 			const result = await axios.get(
-				`https://api.openweathermap.org/data/2.5/weather?lat=${currentLocation.latitude}&lon=${currentLocation.longitude}&units=metric&appid=${APIKEY}`
+				`https://api.openweathermap.org/data/2.5/weather?lat=${currentLocation.latitude}&lon=${currentLocation.longitude}&units=${unitSystem}&appid=${APIKEY}`
 			);
 
 			await setAllData({
@@ -81,7 +82,7 @@ function App() {
 			setLoading(true);
 			if (isNoResult) setIsNoResult(false);
 			const result = await axios.get(
-				`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKEY}`
+				`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unitSystem}&appid=${APIKEY}`
 			);
 
 			await setAllData({
@@ -147,6 +148,7 @@ function App() {
 								handleChange={handleChange}
 								search={search}
 								handleSubmit={handleSubmit}
+								setUnitSystem={setUnitSystem}
 							/>
 
 							{isNoResult && notFoundSearch && !invalidSearch && (
@@ -154,7 +156,7 @@ function App() {
 							)}
 
 							{invalidSearch && <h6 className="notFoundText">{invalidSearch}</h6>}
-							<WeatherData WeatherData={allData} />
+							<WeatherData WeatherData={allData} unitSystem={unitSystem} />
 						</div>
 					</section>
 				</div>
