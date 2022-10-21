@@ -180,13 +180,14 @@ button:hover {
   /* font-family: "Varela Round", sans-serif; */
 }
 
-h6.notFoundText {
-  color: rgb(255, 255, 255);
+span.notFoundTextError {
+  color: #D43c3c;
 }
 
-h6.notFoundTextError {
-  color: rgb(255, 255, 255);
-  text-shadow: 0.5px 0.5px 0.5px black;
+p.notFoundText {
+  margin-top: 10px;
+  color: #2d2b2d ;
+  text-shadow: 0.3px 0.3px 0.3px black;
   font-size: 18px;
 }
 
