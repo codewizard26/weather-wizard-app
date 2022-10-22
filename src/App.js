@@ -24,6 +24,7 @@ function App() {
 	});
 	const [notFoundSearch, setNotFoundSearch] = useState("");
 	const [invalidSearch, setInvalidSearch] = useState("");
+	const [openBox, setOpenBox] = useState(false)
 	const [isNoResult, setIsNoResult] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [dateAndTime, setDateAndTime] = useState("");
@@ -99,6 +100,7 @@ function App() {
 			await console.log("API loading");
 			setIsNoResult(true);
 			setNotFoundSearch(city);
+			setOpenBox(true)
 		} finally {
 			setLoading(false);
 		}
@@ -152,7 +154,7 @@ function App() {
 							/>
 
 							{isNoResult && notFoundSearch && !invalidSearch && (
-								<NotFound notFoundSearch={notFoundSearch} />
+								<NotFound notFoundSearch={notFoundSearch} open={openBox} />
 							)}
 
 							{invalidSearch && <h6 className="notFoundText">{invalidSearch}</h6>}
