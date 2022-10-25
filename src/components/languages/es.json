@@ -1,0 +1,29 @@
+{
+  "translation": {
+    "title": "¡La aplicación del tiempo que necesitas!",
+    "today": "Hoy",
+    "explore": "#Explorar ?",
+    "more-on": "Más de",
+    "no-data": "No hay datos",
+    "unknown-location": "Localizacion desconocida",
+    "realFeel": "Sensacion Real",
+    "humidity": "Humedad",
+    "cover": "Cubierto",
+    "min-temp": "Mínima",
+    "max-temp": "Máxima",
+    "languages": {
+      "en": "Inglés",
+      "es": "Español",
+      "fr": "Francés",
+      "id": "Indonesio",
+      "it": "Italiano",
+      "ta": "Tamil",
+      "bn": "Bangla",
+      "zh": "Chino",
+      "ptBR": "Portugués (Brazil)",
+      "neNP": "Nepali",
+      "he": "Hebrew",
+      "hnd": "Hindi"
+    }
+  }
+}

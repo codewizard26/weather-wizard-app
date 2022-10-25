@@ -1,0 +1,29 @@
+{
+  "translation": {
+    "title": "Aplikasi Cuaca yang Anda Butuhkan !",
+    "today": "Hari ini",
+    "explore": "#Cari ?",
+    "more-on": "Selengkapnya",
+    "no-data": "Tidak Ada Data",
+    "unknown-location": "Lokasi Tidak Diketahui",
+    "realFeel": "Suhu",
+    "cover": "Awan Tertutup",
+    "humidity": "Kelembaban",
+    "min-temp": "Min Temp",
+    "max-temp": "Max Temp",
+    "languages": {
+      "en": "Inggris",
+      "es": "Spanyol",
+      "fr": "Prancis",
+      "id": "Indonesia",
+      "it": "Italia",
+      "ta": "Tamil",
+      "bn": "Bangla",
+      "zh": "Cina",
+      "ptBR": "Portugis (Brasil)",
+      "neNP": "Nepali",
+      "he": "Hebrew",
+      "hnd": "Hindi"
+    }
+  }
+}
