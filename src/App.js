@@ -1,17 +1,17 @@
-import "./App.css";
-import { useEffect, useState } from "react";
-import Footer from "./components/Footer";
-import InputForm from "./components/InputForm";
-import NavBar from "./components/NavBar";
-import NotFound from "./components/NotFound";
-import WeatherData from "./components/WeatherData";
-import axios from "axios";
-import ModeContextProvider from "./contexts/mode";
-import useCurrentLocation from "./contexts/currentLocation";
-import { geolocationOptions } from "./components/constant/geolocationOptions";
+import "./App.css"
+import { useEffect, useState } from "react"
+import Footer from "./components/Footer"
+import InputForm from "./components/InputForm"
+import NavBar from "./components/NavBar"
+import NotFound from "./components/NotFound"
+import WeatherData from "./components/WeatherData"
+import axios from "axios"
+import ModeContextProvider from "./contexts/mode"
+import useCurrentLocation from "./contexts/currentLocation"
+import { geolocationOptions } from "./components/constant/geolocationOptions"
 
 function App() {
-	const [search, setSearch] = useState("");
+	const [search, setSearch] = useState("")
 	const [allData, setAllData] = useState({
 		city: "City Name",
 		country: "Country",
@@ -21,40 +21,37 @@ function App() {
 		pressure: "NA",
 		icon: "10d",
 		description: "Description",
-	});
-	const [notFoundSearch, setNotFoundSearch] = useState("");
-	const [invalidSearch, setInvalidSearch] = useState("");
-	const [isNoResult, setIsNoResult] = useState(false);
-	const [loading, setLoading] = useState(false);
-	const [dateAndTime, setDateAndTime] = useState("");
+	})
+	const [notFoundSearch, setNotFoundSearch] = useState("")
+	const [invalidSearch, setInvalidSearch] = useState("")
+	const [isNoResult, setIsNoResult] = useState(false)
+	const [loading, setLoading] = useState(false)
+	const [dateAndTime, setDateAndTime] = useState("")
 	const [unitSystem, setUnitSystem] = useState('metric')
-	const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions);
-
-	useEffect(() => {
-		if (search && unitSystem) fetchData(search);
-	}, [unitSystem]);
+	const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions)
 
 	useEffect(() => {
 		console.log(currentLocation, currentError)
-		if (currentLocation) fetchCurrData();
-	}, [currentLocation]);
+		if (currentLocation && !search) fetchCurrData()
+	}, [currentLocation, unitSystem, search])
+
 
 	useEffect(() => {
 		setTimeout(() => {
-			getCurrentDateAndTime();
-		}, 1000);
-	}, [dateAndTime]);
+			getCurrentDateAndTime()
+		}, 1000)
+	}, [dateAndTime])
 
 	const fetchCurrData = async () => {
-		const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
+		const APIKEY = process.env.REACT_APP_WEATHER_API_KEY
 		try {
 			// Clear message for invalid search if location is entered in search field.
-			setInvalidSearch("");
-			setLoading(true);
-			if (isNoResult) setIsNoResult(false);
+			setInvalidSearch("")
+			setLoading(true)
+			if (isNoResult) setIsNoResult(false)
 			const result = await axios.get(
 				`https://api.openweathermap.org/data/2.5/weather?lat=${currentLocation.latitude}&lon=${currentLocation.longitude}&units=${unitSystem}&appid=${APIKEY}`
-			);
+			)
 
 			await setAllData({
 				city: result.data.name,
@@ -65,25 +62,25 @@ function App() {
 				description: result.data.weather[0].description,
 				pressure: result.data.main.pressure,
 				icon: result.data.weather[0].icon,
-			});
+			})
 		} catch (e) {
-			await console.log("API loading");
-			setIsNoResult(true);
+			await console.log("API loading")
+			setIsNoResult(true)
 		} finally {
-			setLoading(false);
+			setLoading(false)
 		}
 	}
 
-	const fetchData = async (city) => {
-		const APIKEY = process.env.REACT_APP_WEATHER_API_KEY;
+	const fetchData = async (city, unit) => {
+		const APIKEY = process.env.REACT_APP_WEATHER_API_KEY
 		try {
 			// Clear message for invalid search if location is entered in search field.
-			setInvalidSearch("");
-			setLoading(true);
-			if (isNoResult) setIsNoResult(false);
+			setInvalidSearch("")
+			setLoading(true)
+			if (isNoResult) setIsNoResult(false)
 			const result = await axios.get(
-				`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unitSystem}&appid=${APIKEY}`
-			);
+				`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${APIKEY}`
+			)
 
 			await setAllData({
 				city: result.data.name,
@@ -94,47 +91,47 @@ function App() {
 				description: result.data.weather[0].description,
 				pressure: result.data.main.pressure,
 				icon: result.data.weather[0].icon,
-			});
+			})
 		} catch (e) {
-			await console.log("API loading");
-			setIsNoResult(true);
-			setNotFoundSearch(city);
+			await console.log("API loading")
+			setIsNoResult(true)
+			setNotFoundSearch(city)
 		} finally {
-			setLoading(false);
+			setLoading(false)
 		}
-	};
+	}
 
 	const handleChange = (event) => {
-		setSearch(event.target.value);
-	};
+		setSearch(event.target.value)
+	}
 
 	const handleSubmit = (event) => {
-		event.preventDefault();
+		event.preventDefault()
 		// Ensure the searched city is not blank
 		search !== ""
-			? fetchData(search)
-			: setInvalidSearch("Please enter city name to search.");
-	};
+			? fetchData(search, unitSystem)
+			: setInvalidSearch("Please enter city name to search.")
+	}
 
 	const getCurrentDateAndTime = () => {
-		let date = new Date();
+		let date = new Date()
 		let options = {
 			weekday: "long",
 			year: "numeric",
 			month: "long",
 			day: "numeric",
-		};
-		let currentDate = date.toLocaleDateString("en-us", options);
-		let hours = date.getHours();
-		let minutes = date.getMinutes();
-		let seconds = date.getSeconds();
+		}
+		let currentDate = date.toLocaleDateString("en-us", options)
+		let hours = date.getHours()
+		let minutes = date.getMinutes()
+		let seconds = date.getSeconds()
 		let currentTime =
 			hours > 12
 				? `${hours - 12 < 10 ? `0${hours - 12}` : hours - 12}:${minutes < 10 ? `0${minutes}` : minutes
 				}:${seconds < 10 ? `0${seconds}` : seconds} P.M`
-				: `${hours}:${minutes}:${seconds} A.M`;
-		setDateAndTime(`${currentDate} || ${currentTime}`);
-	};
+				: `${hours}:${minutes}:${seconds} A.M`
+		setDateAndTime(`${currentDate} || ${currentTime}`)
+	}
 
 	return (
 		<ModeContextProvider>
@@ -149,6 +146,7 @@ function App() {
 								search={search}
 								handleSubmit={handleSubmit}
 								setUnitSystem={setUnitSystem}
+								fetchData={fetchData}
 							/>
 
 							{isNoResult && notFoundSearch && !invalidSearch && (
@@ -163,7 +161,7 @@ function App() {
 				<Footer />
 			</main>
 		</ModeContextProvider>
-	);
+	)
 }
 
-export default App;
+export default App
