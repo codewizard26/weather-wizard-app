@@ -1,12 +1,12 @@
 # About
 
-This is an open-source weather app built using React.js, and you are welcome to add your unique touch to this project by contributing to the repository.
+Contribute to this open-source weather app built using React.js by adding your unique touch.
 
 # Project Link
 
 Live project link [weather-wizard-app](https://weather-wizapp.netlify.app/)
 
-###The original code is in community_uploads branch whereas master branch contains code changes made by the contributors. You can either make changes to any one of the branch
+###Community_uploads branch contains the original code, whereas master branch contains the changes made by contributors. Changes can be made to any of the branches.
 
 # What is Hacktoberfest
 The Hacktoberfest is a program put on by Digital Ocean, DEV and Github that lets you win a T-Shirt by making 4 pull requests on any open-source project throughout October.

@@ -1,6 +1,7 @@
 import "./App.css"
 import { useEffect, useState } from "react"
 import Footer from "./components/Footer"
+import { useTranslation } from "react-i18next"
 import InputForm from "./components/InputForm"
 import NavBar from "./components/NavBar"
 import NotFound from "./components/NotFound"
@@ -9,6 +10,7 @@ import axios from "axios"
 import ModeContextProvider from "./contexts/mode"
 import useCurrentLocation from "./contexts/currentLocation"
 import { geolocationOptions } from "./components/constant/geolocationOptions"
+import "./components/languages/i18n"
 
 function App() {
 	const [search, setSearch] = useState("")
@@ -22,25 +24,51 @@ function App() {
 		icon: "10d",
 		description: "Description",
 	})
+	const [currentLanguage, setLanguage] = useState(() => {
+		return localStorage.getItem("language") || "en"
+	})
 	const [notFoundSearch, setNotFoundSearch] = useState("")
 	const [invalidSearch, setInvalidSearch] = useState("")
+	const [openBox, setOpenBox] = useState(false)
 	const [isNoResult, setIsNoResult] = useState(false)
 	const [loading, setLoading] = useState(false)
+	const { t, i18n } = useTranslation()
 	const [dateAndTime, setDateAndTime] = useState("")
-	const [unitSystem, setUnitSystem] = useState('metric')
-	const { location: currentLocation, error: currentError } = useCurrentLocation(geolocationOptions)
+	const [unitSystem, setUnitSystem] = useState("metric")
+
+	const { location: currentLocation, error: currentError } =
+		useCurrentLocation(geolocationOptions)
 
 	useEffect(() => {
 		console.log(currentLocation, currentError)
 		if (currentLocation && !search) fetchCurrData()
 	}, [currentLocation, unitSystem, search])
 
-
 	useEffect(() => {
 		setTimeout(() => {
 			getCurrentDateAndTime()
 		}, 1000)
 	}, [dateAndTime])
+
+	useEffect(() => {
+		if (currentLanguage === "en") return
+
+		changeLanguage(currentLanguage)
+
+		// eslint-disable-next-line
+	}, [currentLanguage])
+
+	const handleLanguage = (event) => {
+		changeLanguage(event.target.value)
+		localStorage.setItem("language", event.target.value)
+	}
+
+	const changeLanguage = (value, location) => {
+		i18n
+			.changeLanguage(value)
+			.then(() => setLanguage(value))
+			.catch((err) => console.log(err))
+	}
 
 	const fetchCurrData = async () => {
 		const APIKEY = process.env.REACT_APP_WEATHER_API_KEY
@@ -96,6 +124,7 @@ function App() {
 			await console.log("API loading")
 			setIsNoResult(true)
 			setNotFoundSearch(city)
+			setOpenBox(true)
 		} finally {
 			setLoading(false)
 		}
@@ -150,11 +179,46 @@ function App() {
 							/>
 
 							{isNoResult && notFoundSearch && !invalidSearch && (
-								<NotFound notFoundSearch={notFoundSearch} />
+								<NotFound notFoundSearch={notFoundSearch} open={openBox} />
 							)}
 
-							{invalidSearch && <h6 className="notFoundText">{invalidSearch}</h6>}
-							<WeatherData WeatherData={allData} unitSystem={unitSystem} />
+							{invalidSearch && (
+								<h6 className="notFoundText">{invalidSearch}</h6>
+							)}
+							<WeatherData
+								WeatherData={allData}
+								unitSystem={unitSystem}
+							/>
+						</div>
+						<div className="info-container">
+							<div className="info-inner-container">
+								<select
+									className="selected-languange"
+									defaultValue={currentLanguage}
+									onChange={(e) => handleLanguage(e)}
+								>
+									<option selected value="en">
+										English
+									</option>
+									<option value="es">Español</option>
+									<option value="fr">Français</option>
+									<option value="id">Indonesia</option>
+									<option value="ta">தமிழ்</option>
+									<option value="zh">简体中文</option>
+									<option value="ukr">Ukrainian</option>
+									<option value="es">{t("languages.es")}</option>
+									<option value="fr">{t("languages.fr")}</option>
+									<option value="id">{t("languages.id")}</option>
+									<option value="it">{t("languages.it")}</option>
+									<option value="ta">{t("languages.ta")}</option>
+									<option value="bn">{t("languages.bn")}</option>
+									<option value="zh">{t("languages.zh")}</option>
+									<option value="ptBR">{t("languages.ptBR")}</option>
+									<option value="neNP">{t("languages.neNP")}</option>
+									<option value="he">{t("languages.he")}</option>
+									<option value="hnd">{t("languages.hnd")}</option>
+								</select>
+							</div>
 						</div>
 					</section>
 				</div>
