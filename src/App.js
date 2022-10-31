@@ -23,7 +23,8 @@ function App() {
 		pressure: "NA",
 		icon: "10d",
 		description: "Description",
-		feels_like: 'NA'
+		feels_like: 'NA',
+		temp_max: 'NA'
 	})
 	const [currentLanguage, setLanguage] = useState(() => {
 		return localStorage.getItem("language") || "en"
