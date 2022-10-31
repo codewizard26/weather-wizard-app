@@ -1,10 +1,8 @@
 body {
-  background: linear-gradient(
-    90deg,
-    rgba(7, 3, 71, 1) 0%,
-    rgba(18, 18, 142, 1) 46%,
-    rgba(6, 157, 187, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(7, 3, 71, 1) 0%,
+      rgba(18, 18, 142, 1) 46%,
+      rgba(6, 157, 187, 1) 100%);
   text-align: center;
   /* font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif; */
@@ -22,15 +20,18 @@ body {
   border-radius: 5px;
   font-size: 17px;
 }
+
 .navbar {
   padding: 0px;
   /* font-family: "Varela Round", sans-serif; */
   color: #f9f9f9;
 }
+
 .navbar-brand {
   display: flex;
   align-items: center;
 }
+
 .navlogo {
   background: #18232b;
   border-radius: 45%;
@@ -141,9 +142,11 @@ button:hover {
 
 @media screen and (min-width: 768px) {
   .weather-description {
-    display: flex;
-    justify-content: space-evenly;
-    margin-bottom: 50px;
+    /* display: flex;
+    justify-content: space-evenly; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-bottom: 30px;
     margin-top: 30px;
     text-align: center;
   }
@@ -154,18 +157,20 @@ button:hover {
     width: 98%;
     margin: 0.5rem auto;
   }
+
   .data {
     padding: 0.5rem 0;
   }
+
   .input {
     width: 70% !important;
     margin: 0px 5px !important;
   }
 }
 
-.dbtn{
-  height:40px;
-  width:40px;
+.dbtn {
+  height: 40px;
+  width: 40px;
 }
 
 .footer {
@@ -186,7 +191,7 @@ span.notFoundTextError {
 
 p.notFoundText {
   margin-top: 10px;
-  color: #2d2b2d ;
+  color: #2d2b2d;
   text-shadow: 0.3px 0.3px 0.3px black;
   font-size: 18px;
 }
@@ -194,4 +199,8 @@ p.notFoundText {
 ion-icon {
   font-size: 3rem;
   transition: all 1s ease-in;
+}
+
+.grid-item {
+  text-align: center;
 }

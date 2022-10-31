@@ -19,10 +19,11 @@ function App() {
 		country: "Country",
 		temperature: "NA",
 		humidity: "NA",
-		min_temp: "NA",
+		temp_min: "NA",
 		pressure: "NA",
 		icon: "10d",
 		description: "Description",
+		feels_like: 'NA'
 	})
 	const [currentLanguage, setLanguage] = useState(() => {
 		return localStorage.getItem("language") || "en"
@@ -81,15 +82,19 @@ function App() {
 				`https://api.openweathermap.org/data/2.5/weather?lat=${currentLocation.latitude}&lon=${currentLocation.longitude}&units=${unitSystem}&appid=${APIKEY}`
 			)
 
+			const { feels_like, temp_max, } = result.data.main
+
 			await setAllData({
 				city: result.data.name,
 				country: result.data.sys.country,
 				temperature: result.data.main.temp,
 				humidity: result.data.main.humidity,
-				min_temp: result.data.main.temp_min,
+				temp_min: result.data.main.temp_min,
 				description: result.data.weather[0].description,
 				pressure: result.data.main.pressure,
 				icon: result.data.weather[0].icon,
+				feels_like,
+				temp_max
 			})
 		} catch (e) {
 			await console.log("API loading")
@@ -110,15 +115,19 @@ function App() {
 				`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${APIKEY}`
 			)
 
+			const { feels_like, temp_max, } = result.data.main
+
 			await setAllData({
 				city: result.data.name,
 				country: result.data.sys.country,
 				temperature: result.data.main.temp,
 				humidity: result.data.main.humidity,
-				min_temp: result.data.main.temp_min,
+				temp_min: result.data.main.temp_min,
 				description: result.data.weather[0].description,
 				pressure: result.data.main.pressure,
 				icon: result.data.weather[0].icon,
+				feels_like,
+				temp_max
 			})
 		} catch (e) {
 			await console.log("API loading")
